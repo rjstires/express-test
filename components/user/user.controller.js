@@ -2,37 +2,35 @@ var path = require("path");
 
 // Actions
 function index(req, res, next) {
-  res.locals.title = 'View Users';
   next();
 }
 
 function create(req, res, next) {
-  res.locals.title = 'Create a User';
   next();
 }
 
 function read(req, res, next) {
-  res.locals.title = 'Show User';
+  res.locals.user_id = req.params.user_id;
+  next();
 }
 
 function update(req, res, next) {
-  res.locals.title = 'Update User';
+  next();
 }
 
 function remove(req, res, next) {
-  res.locals.title = 'Remove User';
+  next();
 }
 
 // Views
 function usersView(req, res, next) {
-  res.locals.title = 'Last minute change!';
-  res.locals.other_local = 'stuff goes here!';
-
+  res.set('title', 'Show all users.');
   res.renderTemplate(__dirname, 'index');
 }
 
 function userView(req, res, next) {
-
+  res.set('title', 'Show a User');
+  res.renderTemplate(__dirname, 'show');
 }
 
 module.exports = {
